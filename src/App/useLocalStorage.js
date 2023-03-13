@@ -30,7 +30,7 @@ function useLocalStorage(itemName, initialValue) {
           // ctualizar estado de error
           setError(error);
         }
-      }, 3000);
+      }, 1000);
     }, []);
    
     const saveItem = (newItem) => {

@@ -36,21 +36,38 @@ function App(props) {
             <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
         </TodoHeader>
 
-        <TodoList>
-          {error && <TodosError error= {error} /> }
-          {loading && <TodosLoading /> }
-          {(!loading && !searchedTodos.length) && <EmptyTodos />}
-
-          {searchedTodos.map(todo => (
+        <TodoList 
+          error={error}
+          loading={loading}
+          searchedTodos={searchedTodos}
+          totalTodos={totalTodos}
+          searchText={searchValue}
+          onError={() => <TodosError />}
+          onLoading={() => <TodosLoading />}
+          onEmptyTodos={() => <EmptyTodos />}
+          onEmptySearchResults={(searchText) => <p>No hay resultados para "{searchText}".</p>}
+          /*render={todo => (
             <TodoItem 
-            key={todo.text} 
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => toggleTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
+              key={todo.text} 
+              text={todo.text}
+              completed={todo.completed}
+              onComplete={() => toggleTodo(todo.text)}
+              onDelete={() => deleteTodo(todo.text)}
             />
-          ))}
+          )}*/
+        
+        >
+          {todo => (
+            <TodoItem 
+              key={todo.text} 
+              text={todo.text}
+              completed={todo.completed}
+              onComplete={() => toggleTodo(todo.text)}
+              onDelete={() => deleteTodo(todo.text)}
+            />
+          )}
         </TodoList>
+
         {openModal ? 
         <Modal>
           <TodoForm addTodo={addTodo} setOpenModal={setOpenModal}/>

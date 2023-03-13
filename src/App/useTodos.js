@@ -53,11 +53,6 @@ function useTodos() {
   
       saveTodos(newTodos);
     };
-    
-    React.useEffect(() => {
-      console.log('use effect');
-    }, [totalTodos]);
-  
 
     return{
       loading,
