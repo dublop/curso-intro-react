@@ -2,7 +2,11 @@ import React, { createContext } from "react";
 import { useLocalStorage } from'./useLocalStorage';
 
 function useTodos() {
-    const {item: todos, saveItem: saveTodos, loading, error} = useLocalStorage('CURSONOTES_V1', []);
+    const {item: todos, 
+      saveItem: saveTodos, 
+      sincronizeItem: sincronizeTodos, 
+      loading, 
+      error} = useLocalStorage('CURSONOTES_V1', []);
     // El estado de nuestra búsqueda
     const [searchValue, setSearchValue] = React.useState('');
     //
@@ -67,6 +71,7 @@ function useTodos() {
       deleteTodo,
       openModal,
       setOpenModal,
+      sincronizeTodos,
     };
 }
 
